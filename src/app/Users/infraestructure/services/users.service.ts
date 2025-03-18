@@ -10,7 +10,7 @@ import { UserGateway } from "../../domain/gateways/UsersGateways";
 })
 
 export class UserService implements UserGateway {
-    private apiURL = 'http'
+    private apiURL = 'http://localhost:8080'
     constructor(private http: HttpClient) {}
 
     getAll(): Observable<iUsers[]>{
@@ -22,11 +22,15 @@ export class UserService implements UserGateway {
     }
 
     create(iusers: iUsers): Observable<iUsers>{
-        return this.http.post<iUsers>(`${this.apiURL}`, iusers)
+        return this.http.post<iUsers>(`${this.apiURL}/users`, iusers)
     }
 
     update(id: number, iusers: iUsers): Observable<iUsers>{
         return this.http.put<iUsers>(`${this.apiURL}/${id}`, iusers)
+    }
+
+    login(Email: string, Contraseña: string): Observable<{ token: string }> {
+        return this.http.post<{ token: string }>(`${this.apiURL}/login`, { Email, Contraseña });
     }
 
    

@@ -1,0 +1,27 @@
+<div class="login-container">
+    <h2>Iniciar Sesión</h2>
+    <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
+      <div class="form-group">
+        <label for="Email">Email</label>
+        <input type="email" id="Email" formControlName="Email" placeholder="Ingresa tu email">
+        <div *ngIf="loginForm.get('Email')?.hasError('required') && loginForm.get('Email')?.touched" class="error">
+          El email es requerido.
+        </div>
+        <div *ngIf="loginForm.get('Email')?.hasError('email') && loginForm.get('Email')?.touched" class="error">
+          Ingresa un email válido.
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="Contraseña">Contraseña</label>
+        <input type="password" id="Contraseña" formControlName="Contraseña" placeholder="Ingresa tu contraseña">
+        <div *ngIf="loginForm.get('Contraseña')?.hasError('required') && loginForm.get('Contraseña')?.touched" class="error">
+          La contraseña es requerida.
+        </div>
+        <div *ngIf="loginForm.get('Contraseña')?.hasError('minlength') && loginForm.get('Contraseña')?.touched" class="error">
+          La contraseña debe tener al menos 6 caracteres.
+        </div>
+      </div>
+      <button type="submit" [disabled]="loginForm.invalid">Iniciar Sesión</button>
+    </form>
+    <p>¿No tienes cuenta? <a (click)="goToRegister()">Regístrate</a></p>
+  </div>

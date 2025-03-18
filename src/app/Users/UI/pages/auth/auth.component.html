@@ -1,0 +1,7 @@
+<div class="auth-container">
+    <app-login *ngIf="isLoginMode"></app-login>
+    <app-register *ngIf="!isLoginMode"></app-register>
+    <button (click)="toggleMode()">
+      {{ isLoginMode ? '¿No tienes cuenta? Regístrate' : '¿Ya tienes cuenta? Inicia Sesión' }}
+    </button>
+  </div>

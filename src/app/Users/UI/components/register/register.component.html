@@ -1,0 +1,34 @@
+<div class="register-container">
+    <h2>Registro</h2>
+    <form [formGroup]="registerForm" (ngSubmit)="onRegister()">
+      <div class="form-group">
+        <label for="Nombre">Nombre</label>
+        <input type="text" id="Nombre" formControlName="Nombre" placeholder="Ingresa tu nombre">
+        <div *ngIf="registerForm.get('Nombre')?.hasError('required') && registerForm.get('Nombre')?.touched" class="error">
+          El nombre es requerido.
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="Email">Email</label>
+        <input type="email" id="Email" formControlName="Email" placeholder="Ingresa tu email">
+        <div *ngIf="registerForm.get('Email')?.hasError('required') && registerForm.get('Email')?.touched" class="error">
+          El email es requerido.
+        </div>
+        <div *ngIf="registerForm.get('Email')?.hasError('Email') && registerForm.get('Email')?.touched" class="error">
+          Ingresa un email válido.
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="Contraseña">Contraseña</label>
+        <input type="Contraseña" id="Contraseña" formControlName="Contraseña" placeholder="Ingresa tu contraseña">
+        <div *ngIf="registerForm.get('Contraseña')?.hasError('required') && registerForm.get('Contraseña')?.touched" class="error">
+          La contraseña es requerida.
+        </div>
+        <div *ngIf="registerForm.get('Contraseña')?.hasError('minlength') && registerForm.get('Contraseña')?.touched" class="error">
+          La contraseña debe tener al menos 6 caracteres.
+        </div>
+      </div>
+      <button type="submit" [disabled]="registerForm.invalid">Registrarse</button>
+    </form>
+    <p>¿Ya tienes cuenta? <a (click)="goToLogin()">Inicia Sesión</a></p>
+  </div>
