@@ -5,26 +5,26 @@ import { iProducts } from "../../domain/models/products";
 import { ProductGateway } from "../../domain/gateways/productsGateway";
 
 @Injectable({
-    providedIn: 'root'
+  providedIn: 'root'
 })
-
 export class ProductService implements ProductGateway {
-    private apiURL = 'http'
-    constructor(private httpClient: HttpClient) {}
+  private apiURL = 'http://localhost:8080/products';
+  
+  constructor(private httpClient: HttpClient) {}
 
-    getAll(): Observable<iProducts[]>{
-        return this.httpClient.get<iProducts[]>(this.apiURL)
-    }
+  getAll(): Observable<iProducts[]> {
+    return this.httpClient.get<iProducts[]>(this.apiURL);
+  }
 
-    create(iproducts: iProducts): Observable<iProducts>{
-        return this.httpClient.post<iProducts>(`${this.apiURL}`, iproducts)
-    }
+  create(product: iProducts): Observable<iProducts> {
+    return this.httpClient.post<iProducts>(this.apiURL, product);
+  }
 
-    update(id:number, iproducts:iProducts): Observable<iProducts>{
-        return this.httpClient.put<iProducts>(`${this.apiURL}/${id}`, iproducts);
-    }
+  update(id: number, product: iProducts): Observable<iProducts> {
+    return this.httpClient.put<iProducts>(`${this.apiURL}/${id}`, product);
+  }
 
-    delete(id:number): Observable<void>{
-        return this.httpClient.delete<void>(`${this.apiURL}/${id}`)
-    }
+  delete(id: number): Observable<void> {
+    return this.httpClient.delete<void>(`${this.apiURL}/${id}`);
+  }
 }

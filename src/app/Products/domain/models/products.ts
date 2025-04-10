@@ -3,4 +3,5 @@ export interface iProducts {
     Nombre: string
     Precio: number
     Cantidad: number
+    imagen?: string;
 }

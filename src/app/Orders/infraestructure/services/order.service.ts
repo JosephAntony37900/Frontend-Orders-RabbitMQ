@@ -9,7 +9,7 @@ import { OrderGateway } from "../../domain/gateways/orderGateway";
 })
 
 export class OrderService implements OrderGateway {
-    private apiURL = 'http'
+    private apiURL = 'http://localhost:8080'
     constructor( private httpClient: HttpClient) {}
 
     getAll(): Observable<iOrder[]>{

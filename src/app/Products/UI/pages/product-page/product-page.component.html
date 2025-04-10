@@ -1,0 +1,13 @@
+<div class="product-page-container">
+    <h1>Nuestros Productos</h1>
+    
+    <div *ngIf="loading" class="loading-spinner">
+      <p>Cargando productos...</p>
+    </div>
+  
+    <div *ngIf="!loading && products.length === 0" class="no-products">
+      <p>No hay productos disponibles</p>
+    </div>
+  
+    <app-cards-products *ngIf="!loading && products.length > 0" [products]="products"></app-cards-products>
+  </div>

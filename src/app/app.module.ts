@@ -12,13 +12,17 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { UserGateway } from './Users/domain/gateways/UsersGateways';
 import { UserService } from './Users/infraestructure/services/users.service';
+import { ProductPageComponent } from './Products/UI/pages/product-page/product-page.component';
+import { CardsProductsComponent } from './Products/UI/components/cards-products/cards-products.component';
+import { ProductService } from './Products/infraestructure/services/products.service';
 
 
 const routes: Routes = [
   { path: 'auth', component: AuthComponent },
   { path: '', redirectTo: '/auth', pathMatch: 'full' },
   {path: 'auth/login', component: LoginComponent},
-  {path: 'auth/register', component: RegisterComponent}
+  {path: 'auth/register', component: RegisterComponent},
+  {path: 'dashboard', component: ProductPageComponent}
 ];
 
 @NgModule({
@@ -26,7 +30,9 @@ const routes: Routes = [
     AppComponent,
     LoginComponent,
     RegisterComponent,
-    AuthComponent
+    AuthComponent,
+    ProductPageComponent,
+    CardsProductsComponent
   ],
   imports: [
     BrowserModule,
@@ -36,7 +42,7 @@ const routes: Routes = [
     ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [{ provide: UserGateway, useClass: UserService }],
+  providers: [{ provide: UserGateway, useClass: UserService }, { provide: 'ProductGateway', useClass: ProductService }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
