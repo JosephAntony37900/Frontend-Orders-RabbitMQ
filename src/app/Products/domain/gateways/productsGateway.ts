@@ -6,4 +6,5 @@ export abstract class ProductGateway {
     abstract getAll(): Observable<iProducts[]>;
     abstract update(id: number, iproduct: iProducts): Observable<iProducts>;
     abstract delete(id: number): Observable<void>;
+    abstract getById(id: number): Observable<iProducts>;
 }

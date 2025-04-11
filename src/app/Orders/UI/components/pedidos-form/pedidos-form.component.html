@@ -1,0 +1,32 @@
+<div class="cart-container">
+    <h2>Tu Carrito de Compras</h2>
+    
+    <div *ngIf="cartItems.length === 0" class="empty-cart">
+      <p>No hay productos en tu carrito</p>
+      <a routerLink="/dashboard">Volver a productos</a>
+    </div>
+  
+    <div *ngIf="cartItems.length > 0" class="cart-items">
+      <div *ngFor="let item of cartItems" class="cart-item">
+        <div class="item-image">
+          <img [src]="item.imagen || 'product.jpeg'" alt="{{ item.Nombre }}">
+        </div>
+        <div class="item-details">
+          <h3>{{ item.Nombre }}</h3>
+          <p>Precio unitario: ${{ item.Precio | number:'1.2-2' }}</p>
+          <div class="quantity-control">
+            <label>Cantidad:</label>
+            <input type="number" [value]="item.Cantidad" min="1" 
+                   (change)="updateQuantity(item, $event)">
+          </div>
+          <p>Subtotal: ${{ (item.Precio * item.Cantidad) | number:'1.2-2' }}</p>
+        </div>
+        <button (click)="removeItem(item.Id ?? undefined)" class="remove-btn">Eliminar</button>
+          </div>
+  
+      <div class="cart-summary">
+        <h3>Total: ${{ total | number:'1.2-2' }}</h3>
+        <button (click)="proceedToPayment()" class="pay-btn">Pagar</button>
+      </div>
+    </div>
+  </div>

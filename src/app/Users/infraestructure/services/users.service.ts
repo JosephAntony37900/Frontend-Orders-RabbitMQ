@@ -3,6 +3,7 @@ import { Observable } from "rxjs";
 import { iUsers } from "../../domain/models/user";
 import { HttpClient } from "@angular/common/http";
 import { UserGateway } from "../../domain/gateways/UsersGateways";
+import { AuthResponse } from "../../domain/models/auth_response";
 
 
 @Injectable({
@@ -29,8 +30,8 @@ export class UserService implements UserGateway {
         return this.http.put<iUsers>(`${this.apiURL}/${id}`, iusers)
     }
 
-    login(Email: string, Contraseña: string): Observable<{ token: string }> {
-        return this.http.post<{ token: string }>(`${this.apiURL}/login`, { Email, Contraseña });
+    login(Email: string, Contraseña: string): Observable<AuthResponse> {
+        return this.http.post<AuthResponse>(`${this.apiURL}/login`, { Email, Contraseña });
     }
 
    

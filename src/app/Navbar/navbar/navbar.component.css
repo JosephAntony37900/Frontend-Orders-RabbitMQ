@@ -1,0 +1,89 @@
+/* Estilos generales */
+:root {
+    --primary-color: #87CEEB; /* Celeste */
+    --secondary-color: #333; /* Negro */
+    --accent-color: #4682B4; /* Celeste más oscuro */
+    --text-light: #fff;
+    --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .navbar {
+    background-color: var(--primary-color);
+    box-shadow: var(--shadow);
+    padding: 1rem 2rem;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+  }
+  
+  .navbar-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .navbar-brand {
+    color: var(--secondary-color);
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+  
+  .navbar-brand:hover {
+    color: var(--accent-color);
+  }
+  
+  .navbar-links {
+    display: flex;
+    gap: 1.5rem;
+  }
+  
+  .nav-link {
+    color: var(--secondary-color);
+    text-decoration: none;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    transition: all 0.3s;
+  }
+  
+  .nav-link:hover {
+    background-color: var(--accent-color);
+    color: var(--text-light);
+  }
+  
+  .cart-link {
+    position: relative;
+  }
+  
+  .cart-count {
+    background-color: var(--secondary-color);
+    color: var(--text-light);
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.75rem;
+    position: absolute;
+    top: -8px;
+    right: -8px;
+  }
+  
+  .logout-link {
+    cursor: pointer;
+  }
+  
+  .logout-link:hover {
+    background-color: #ff4757;
+  }
+  
+  /* Iconos de Font Awesome */
+  @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css');

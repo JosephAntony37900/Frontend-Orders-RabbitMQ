@@ -15,15 +15,17 @@ import { UserService } from './Users/infraestructure/services/users.service';
 import { ProductPageComponent } from './Products/UI/pages/product-page/product-page.component';
 import { CardsProductsComponent } from './Products/UI/components/cards-products/cards-products.component';
 import { ProductService } from './Products/infraestructure/services/products.service';
-
-
-const routes: Routes = [
-  { path: 'auth', component: AuthComponent },
-  { path: '', redirectTo: '/auth', pathMatch: 'full' },
-  {path: 'auth/login', component: LoginComponent},
-  {path: 'auth/register', component: RegisterComponent},
-  {path: 'dashboard', component: ProductPageComponent}
-];
+import { PedidosFormComponent } from './Orders/UI/components/pedidos-form/pedidos-form.component';
+import { PedidosPagosComponent } from './Orders/UI/components/pedidos-pagos/pedidos-pagos.component';
+import { NavbarComponent } from './Navbar/navbar/navbar.component';
+import { OrdersComponent } from './Orders/UI/pages/orders/orders.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AddProductsComponent } from './Products/UI/components/add-products/add-products.component';
+import { ProductGateway } from './Products/domain/gateways/productsGateway';
+import { NotificationGateway } from './Notifications/domain/gateways/notificationGateway';
+import { NotificationService } from './Notifications/infraestructure/services/notification.service';
+import { OrderGateway } from './Orders/domain/gateways/orderGateway';
+import { OrderService } from './Orders/infraestructure/services/order.service';
 
 @NgModule({
   declarations: [
@@ -32,17 +34,27 @@ const routes: Routes = [
     RegisterComponent,
     AuthComponent,
     ProductPageComponent,
-    CardsProductsComponent
+    CardsProductsComponent,
+    PedidosFormComponent,
+    PedidosPagosComponent,
+    NavbarComponent,
+    OrdersComponent,
+    AddProductsComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    RouterModule.forRoot(routes),
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule,
+    RouterModule
   ],
-  providers: [{ provide: UserGateway, useClass: UserService }, { provide: 'ProductGateway', useClass: ProductService }],
+  providers: [{ provide: UserGateway, useClass: UserService }, 
+    { provide: 'ProductGateway', useClass: ProductService }, 
+    { provide: ProductGateway, useClass: ProductService },
+    {provide: NotificationGateway, useClass: NotificationService},
+    {provide: OrderGateway, useClass: OrderService}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -27,4 +27,8 @@ export class ProductService implements ProductGateway {
   delete(id: number): Observable<void> {
     return this.httpClient.delete<void>(`${this.apiURL}/${id}`);
   }
+
+  getById(id: number): Observable<iProducts> {
+      return this.httpClient.get<iProducts>(`${this.apiURL}/${id}`);
+  }
 }

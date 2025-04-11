@@ -1,0 +1,21 @@
+<nav class="navbar" *ngIf="isAuthenticated">
+    <div class="navbar-container">
+      <a routerLink="/dashboard" class="navbar-brand">Mi Tienda</a>
+      
+      <div class="navbar-links">
+        <a routerLink="/dashboard" class="nav-link">
+          <i class="fas fa-box-open"></i> Productos
+        </a>
+        <a routerLink="/cart" class="nav-link cart-link">
+          <i class="fas fa-shopping-cart"></i> Carrito
+          <span class="cart-count" *ngIf="cartItemCount > 0">{{ cartItemCount }}</span>
+        </a>
+        <a routerLink="/orders" class="nav-link">
+          <i class="fas fa-clipboard-list"></i> Mis Pedidos
+        </a>
+        <a (click)="logout()" class="nav-link logout-link">
+          <i class="fas fa-sign-out-alt"></i> Cerrar Sesión
+        </a>
+      </div>
+    </div>
+  </nav>

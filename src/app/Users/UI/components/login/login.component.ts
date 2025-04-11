@@ -27,8 +27,14 @@ export class LoginComponent {
       const { Email, Contraseña } = this.loginForm.value; 
       this.loginUseCase.login(Email, Contraseña).subscribe({
         next: (response) => {
-          localStorage.setItem('token', response.token);
-          this.router.navigate(['/dashboard']);
+          if (response && response.user && response.user.Id !== undefined) {
+            localStorage.setItem('user_id', response.user.Id.toString()); 
+            localStorage.setItem('auth_token', response.token); 
+            this.router.navigate(['/dashboard']); 
+          } else {
+            console.error('El ID del usuario está ausente en la respuesta:', response);
+            alert('Error procesando los datos del servidor.');
+          }
         },
         error: (err) => {
           console.error('Error en el login:', err);
@@ -37,7 +43,7 @@ export class LoginComponent {
       });
     }
   }
-
+  
   goToRegister() {
     this.router.navigate(['auth/register']);
   }
