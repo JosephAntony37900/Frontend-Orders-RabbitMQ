@@ -8,6 +8,7 @@ import { OrdersComponent } from './Orders/UI/pages/orders/orders.component';
 import { LoginComponent } from './Users/UI/components/login/login.component';
 import { RegisterComponent } from './Users/UI/components/register/register.component';
 import { AddProductsComponent } from './Products/UI/components/add-products/add-products.component';
+import { PedidosProcessComponent } from './Orders/UI/components/pedidos-process/pedidos-process.component';
 
 const routes: Routes = [
   { 
@@ -23,6 +24,7 @@ const routes: Routes = [
   { path: 'checkout', component: PedidosPagosComponent },
   { path: 'orders', component: OrdersComponent },
   { path: 'products/add', component: AddProductsComponent },
+  { path: 'pedidos-process', component: PedidosProcessComponent },
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
   { path: '**', redirectTo: '/dashboard' },
   

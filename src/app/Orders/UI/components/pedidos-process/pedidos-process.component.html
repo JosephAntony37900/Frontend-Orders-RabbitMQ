@@ -1,0 +1,30 @@
+<div class="pedidos-process-container">
+    <h2>Finalizar Orden</h2>
+  
+    <form (ngSubmit)="terminarOrden()" #orderForm="ngForm">
+      <label>País:
+        <input type="text" [(ngModel)]="pais" name="pais" required>
+      </label>
+  
+      <label>Entidad Federativa:
+        <input type="text" [(ngModel)]="entidad" name="entidad" required>
+      </label>
+  
+      <label>Código Postal:
+        <input type="text" [(ngModel)]="cp" name="cp" required>
+      </label>
+  
+      <div class="resumen-carrito">
+        <h3>Productos en tu carrito</h3>
+        <ul>
+          <li *ngFor="let item of cartItems">
+            {{ item.Nombre }} (x{{ item.cartQuantity }}) - ${{ item.Precio * (item.cartQuantity || 1) | number:'1.2-2' }}
+          </li>
+        </ul>
+        <p><strong>Total:</strong> ${{ total | number:'1.2-2' }}</p>
+      </div>
+  
+      <button type="submit" class="terminar-btn">Terminar Orden</button>
+    </form>
+  </div>
+  

@@ -12,8 +12,8 @@ export class OrderService implements OrderGateway {
     private apiURL = 'http://localhost:8080/orders'
     constructor( private httpClient: HttpClient) {}
 
-    getAll(): Observable<iOrder[]>{
-        return this.httpClient.get<iOrder[]>(this.apiURL)
+    getAllByUser(id: number): Observable<iOrder[]>{
+        return this.httpClient.get<iOrder[]>(`${this.apiURL}/${id}`)
     }
 
     create(iorder:iOrder): Observable<iOrder>{
@@ -26,6 +26,10 @@ export class OrderService implements OrderGateway {
 
     delete(id: number): Observable<void> {
         return this.httpClient.delete<void>(`${this.apiURL}/${id}`)
+    }
+
+    getByIdOrder(id: number): Observable<iOrder> {
+        return this.httpClient.get<iOrder>(`${this.apiURL}/one/${id}`)
     }
 }
 

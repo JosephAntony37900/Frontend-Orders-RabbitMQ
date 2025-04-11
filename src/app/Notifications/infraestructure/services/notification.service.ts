@@ -21,7 +21,7 @@ export class NotificationService implements NotificationGateway {
   constructor (private httpClient: HttpClient) {}
 
   public startLongPolling(userId: number): void {
-    timer(0, 3000)
+    timer(0, 9000)
       .pipe(
         switchMap(() => this.httpClient.get<LongPollingResponse>(`${this.apiURL}/${userId}?last_timestamp=${this.lastTimestamp}`))
       )

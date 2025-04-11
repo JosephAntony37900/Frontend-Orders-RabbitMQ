@@ -26,6 +26,8 @@ import { NotificationGateway } from './Notifications/domain/gateways/notificatio
 import { NotificationService } from './Notifications/infraestructure/services/notification.service';
 import { OrderGateway } from './Orders/domain/gateways/orderGateway';
 import { OrderService } from './Orders/infraestructure/services/order.service';
+import { NotificationsComponent } from './Notifications/UI/components/notifications/notifications.component';
+import { PedidosProcessComponent } from './Orders/UI/components/pedidos-process/pedidos-process.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +42,8 @@ import { OrderService } from './Orders/infraestructure/services/order.service';
     NavbarComponent,
     OrdersComponent,
     AddProductsComponent,
+    NotificationsComponent,
+    PedidosProcessComponent,
   ],
   imports: [
     BrowserModule,

@@ -7,10 +7,10 @@ import { OrderGateway } from "../gateways/orderGateway";
     providedIn: 'root'
 })
 
-export class getAllOrdersUseCase {
+export class GetByIdOrder {
     constructor(private orderGateway: OrderGateway) {}
-
-    getAllByUser(id: number): Observable<iOrder[]>{
-        return this.orderGateway.getAllByUser(id)
+    
+    getByIdOrder(id: number): Observable<iOrder>{
+        return this.orderGateway.getByIdOrder(id)
     }
 }

@@ -1,1 +1,36 @@
-<p>pedidos-pagos works!</p>
+<div class="pedidos-pagos-container">
+    <h2>Estado de tu Pedido</h2>
+    
+    <div *ngIf="createdOrder; else noOrder" class="order-card">
+      <p><strong>ID:</strong> {{ createdOrder.Id }}</p>
+      <p><strong>Producto:</strong> {{ createdOrder.Producto }}</p>
+      <p>
+        <strong>Estado:</strong>
+        <span *ngIf="createdOrder?.Estado"
+              [ngClass]="{
+                'pending': createdOrder.Estado === 'Pendiente',
+                'accepted': createdOrder.Estado?.toLowerCase() === 'aceptado',
+                'rejected': createdOrder.Estado?.toLowerCase() === 'rechazado'
+              }">
+          {{ createdOrder.Estado }}
+        </span>
+      </p>
+      <p><strong>País:</strong> {{ createdOrder.Pais }}</p>
+      <p><strong>Entidad Federativa:</strong> {{ createdOrder.Entidad_federativa }}</p>
+      <p><strong>Código Postal:</strong> {{ createdOrder.Cp }}</p>
+    </div>
+    
+    <ng-template #noOrder>
+      <p>No se ha creado ningún pedido.</p>
+    </ng-template>
+    
+    <div class="orders-list" *ngIf="orders && orders.length > 0">
+      <h3>Histórico de Pedidos</h3>
+      <ul>
+        <li *ngFor="let order of orders">
+          <span>Pedido #{{ order.Id }} - Estado: <strong>{{ order.Estado }}</strong></span>
+        </li>
+      </ul>
+    </div>
+  </div>
+  

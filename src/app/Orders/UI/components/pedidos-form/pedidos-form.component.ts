@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CartService } from '../../../../Shared/services/cart.service';
+import { CartService, CartItem } from '../../../../Shared/services/cart.service';
 import { iProducts } from '../../../../Products/domain/models/products';
 import { Router } from '@angular/router';
 
@@ -8,9 +8,11 @@ import { Router } from '@angular/router';
   templateUrl: './pedidos-form.component.html',
   styleUrls: ['./pedidos-form.component.css']
 })
+
 export class PedidosFormComponent implements OnInit {
-  cartItems: iProducts[] = [];
+  cartItems: CartItem[] = [];
   total: number = 0;
+  
 
   constructor(
     private cartService: CartService,
@@ -35,13 +37,20 @@ export class PedidosFormComponent implements OnInit {
 
   updateQuantity(product: iProducts, event: any): void {
     const quantity = parseInt(event.target.value);
-    if (quantity > 0 && product.Id !== undefined) {
+    if (
+      quantity > 0 &&
+      product.Id !== undefined &&
+      quantity <= product.Cantidad 
+    ) {
       this.cartService.updateQuantity(product.Id, quantity);
       this.loadCart();
+    } else {
+      alert('La cantidad excede el stock disponible.');
+      this.loadCart(); 
     }
-  }
+  }  
 
   proceedToPayment(): void {
-    this.router.navigate(['/checkout']);
+    this.router.navigate(['/pedidos-process']);
   }
 }
